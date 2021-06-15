@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- import vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+
+    <div id="app">       
+        <!-- call a variabel "pesan" to HTML tag -->
+        <h1>{{pesan}}</h1>
+        <!-- inset variabel as a html attribute -->
+        <p :title="judul" >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, doloribus!</p>
+        <!-- condiiton -->
+        <p v-if="bool">Mencoba V-if</p>
+        <p v-else-if="bool3">Mencoba V-else-if</p>
+        <p v-else>Mencoba V-else</p>
+
+        <p v-show="bool2">Mencoba V-Show</p>
+        <!-- looping with index -->
+        <ul>
+            <li v-for="(buah, index) in listBuah">{{buah}} + {{index}}</li>
+        </ul>
+        <!-- looping with array of object -->
+        <div v-for="mahasiswa in listMahasiswa">
+            <h3>{{mahasiswa.nama}}</h3>
+            <p>{{mahasiswa.jurusan}}</p>
+        </div>
+        <!-- reactive input -->
+        <h1>{{isiInput}}</h1>
+        <input v-model="isiInput" type="text">
+
+        <!-- call a method -->
+        <button @click="showAlert()" >Show Alert</button>
+
+        <!-- call a method -->
+        <h1>{{nilai}}</h1>
+        <button @click="increment">Increment</button>
+        <button @click="decrement">Decrement</button>
+        
+    </div>
+
+    <script>
+
+        var app = new Vue({
+            el : '#app',
+            data : {
+                
+                nilai : 0,
+
+                pesan : 'Halooo',
+                judul : 'Ini adalah sebuah paragraf',
+                bool : false,
+                bool2 : false,
+                bool3: true,
+
+                listBuah : ['apel', 'jeruk', 'mangga', 'semangka'],
+                listMahasiswa : [
+                    {
+                        nama : 'Yusuf',
+                        jurusan : 'ilkom'
+                     },
+
+                     {
+                         nama : 'Yudhistira',
+                         jurusan : 'Elins'
+                     },
+                     {
+                         nama : 'Perdana',
+                         jurusan : 'Fisika'
+                     }
+                ],
+
+                isiInput : 'Halo namaku yusuf'
+            
+            },
+
+            methods: {
+                // method to show alerts
+                showAlert(){
+                    alert('Halooo ini Method');
+                },
+
+                increment(){
+                    // ++ a variabel in "data"
+                    this.nilai++;
+                    if(this.nilai === 10)alert('Nilai anda telah mencapai 10')
+                    return;
+                },
+
+                decrement(){
+                    this.nilai--;
+                }
+
+
+            },
+
+          
+
+        });
+
+
+    </script>
+</body>
+</html>
